@@ -21,9 +21,6 @@ def load_model_from_zip(zip_path, inner_filename):
             model = joblib.load(f)
     return model
 
-# Example usage
-model = load_model_from_zip("rfmodel_v20250725.zip", "rfmodel_v20250725.joblib")
-
 def get_forecast():
     tomorrow = (datetime.now(pytz.timezone(TIMEZONE)) + timedelta(days=1)).strftime("%Y-%m-%d")
     hourly_vars = ",".join([
