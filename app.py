@@ -11,8 +11,6 @@ import pytz
 import holidays
 import matplotlib.pyplot as plt
 import zipfile
-import sklearn, joblib, sys
-import streamlit as st
 
 LAT, LON = -33.45, -70.66  # Santiago
 TIMEZONE = "America/Santiago"
@@ -103,8 +101,8 @@ with st.spinner("Loading forecast data and model..."):
     forecast_df = get_forecast()
 
     model = load_model_from_zip(
-        zip_path="rfmodel_streamlit.zip",
-        inner_filename="rfmodel_streamlit.joblib"
+        zip_path="rfmodel_v20250725.zip",
+        inner_filename="rfmodel_v20250725.joblib"
     )
     required_features = list(model.feature_names_in_)
 

@@ -6,4 +6,4 @@ requests
 pytz
 holidays
 matplotlib
-scikit-learn
+sklearn
