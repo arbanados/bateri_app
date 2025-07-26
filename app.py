@@ -14,12 +14,6 @@ import zipfile
 import sklearn, joblib, sys
 import streamlit as st
 
-st.write("Python version:", sys.version)
-st.write("scikit-learn version:", sklearn.__version__)
-st.write("joblib version:", joblib.__version__)
-
-
-
 LAT, LON = -33.45, -70.66  # Santiago
 TIMEZONE = "America/Santiago"
 
