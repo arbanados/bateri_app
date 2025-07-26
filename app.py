@@ -10,12 +10,19 @@ from datetime import datetime, timedelta
 import pytz
 import holidays
 import matplotlib.pyplot as plt
+import zipfile
 
 LAT, LON = -33.45, -70.66  # Santiago
 TIMEZONE = "America/Santiago"
 
-def load_model():
-    return joblib.load("rfmodel_v20250725.joblib")
+def load_model_from_zip(zip_path, inner_filename):
+    with zipfile.ZipFile(zip_path, 'r') as z:
+        with z.open(inner_filename) as f:
+            model = joblib.load(f)
+    return model
+
+# Example usage
+model = load_model_from_zip("rfmodel_v20250725.zip", "rfmodel_v20250725.joblib")
 
 def get_forecast():
     tomorrow = (datetime.now(pytz.timezone(TIMEZONE)) + timedelta(days=1)).strftime("%Y-%m-%d")
@@ -96,7 +103,10 @@ st.markdown("Predicting hourly electricity demand for **tomorrow** using weather
 with st.spinner("Loading forecast data and model..."):
     forecast_df = get_forecast()
 
-    model = load_model()
+    model = load_model_from_zip(
+        zip_path="rfmodel_v20250725.zip",
+        inner_filename="rfmodel_v20250725.joblib"
+    )
     required_features = list(model.feature_names_in_)
 
     forecast_df = create_lagged_features(forecast_df, required_features)
