@@ -104,8 +104,8 @@ with st.spinner("Loading forecast data and model..."):
     forecast_df = get_forecast()
 
     model = load_model_from_zip(
-        zip_path="rfmodel_v20250725.zip",
-        inner_filename="rfmodel_v20250725.joblib"
+        zip_path="rfmodel_streamlit.zip",
+        inner_filename="rfmodel_streamlit.joblib"
     )
     required_features = list(model.feature_names_in_)
 
